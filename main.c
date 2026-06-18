@@ -10,6 +10,8 @@ int main()
 {
     int opcion;
 
+    configurarColorConsola();
+
     do
     {
         mostrarMenuPrincipal();

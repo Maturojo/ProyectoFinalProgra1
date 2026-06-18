@@ -2,6 +2,7 @@
 #define UTILS_H_INCLUDED
 
 void limpiarBuffer(void);
+void configurarColorConsola(void);
 void pausar(void);
 void leerCadena(char texto[], int tamanio);
 int leerEntero(const char mensaje[]);

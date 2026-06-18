@@ -12,6 +12,11 @@ void limpiarBuffer(void)
     }
 }
 
+void configurarColorConsola(void)
+{
+    system("color 0B");
+}
+
 void pausar(void)
 {
     printf("\nPresione ENTER para continuar...");
