@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "contenidos.h"
 #include "estructuras.h"
 #include "generos.h"
 #include "usuarios.h"
@@ -77,15 +78,20 @@ void menuAdministrador(Usuario usuario)
         printf("Usuario: %s\n", usuario.nombre);
         printf("----------------------------------------\n");
         printf("1. Administrar generos\n");
+        printf("2. Administrar contenidos\n");
         printf("0. Cerrar sesion\n");
         printf("----------------------------------------\n");
 
-        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 1);
+        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 2);
 
         switch (opcion)
         {
             case 1:
                 menuGeneros();
+                break;
+
+            case 2:
+                menuContenidos();
                 break;
 
             case 0:
@@ -109,7 +115,7 @@ void menuUsuarioComun(Usuario usuario)
         printf("========================================\n");
         printf("Usuario: %s\n", usuario.nombre);
         printf("----------------------------------------\n");
-        printf("1. Ver catalogo (pendiente)\n");
+        printf("1. Ver catalogo\n");
         printf("0. Cerrar sesion\n");
         printf("----------------------------------------\n");
 
@@ -118,7 +124,7 @@ void menuUsuarioComun(Usuario usuario)
         switch (opcion)
         {
             case 1:
-                printf("\nModulo de catalogo pendiente para proximas etapas.\n");
+                listarContenidos();
                 pausar();
                 break;
 

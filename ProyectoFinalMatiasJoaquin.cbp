@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="contenidos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="contenidos.h" />
 		<Unit filename="estructuras.h" />
 		<Unit filename="generos.c">
 			<Option compilerVar="CC" />
