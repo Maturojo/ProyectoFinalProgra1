@@ -8,11 +8,16 @@
 #define ROL_USUARIO 2
 
 void inicializarUsuarios(void);
+void menuUsuarios(void);
 void registrarUsuario(void);
 int loginUsuario(Usuario *usuarioLogueado);
+void listarUsuarios(void);
+void bajaUsuario(void);
 
 int obtenerSiguienteIdUsuario(void);
 int existeUsuarioActivoConEmail(const char email[]);
 int buscarUsuarioPorLogin(const char email[], const char password[], Usuario *usuarioEncontrado);
+int buscarUsuarioPorId(int id, Usuario *usuario, long *posicion);
+void mostrarUsuario(Usuario usuario);
 
 #endif

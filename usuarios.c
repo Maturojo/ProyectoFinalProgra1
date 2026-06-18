@@ -37,6 +37,38 @@ void inicializarUsuarios(void)
     fclose(archivo);
 }
 
+void menuUsuarios(void)
+{
+    int opcion;
+
+    do
+    {
+        system("cls");
+        printf("========================================\n");
+        printf("             Gestion de usuarios\n");
+        printf("========================================\n");
+        printf("1. Listar usuarios\n");
+        printf("2. Baja de usuario\n");
+        printf("0. Volver\n");
+        printf("----------------------------------------\n");
+
+        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 2);
+
+        switch (opcion)
+        {
+            case 1:
+                listarUsuarios();
+                pausar();
+                break;
+
+            case 2:
+                bajaUsuario();
+                break;
+        }
+    }
+    while (opcion != 0);
+}
+
 void registrarUsuario(void)
 {
     FILE *archivo;
@@ -118,6 +150,92 @@ int loginUsuario(Usuario *usuarioLogueado)
     return 0;
 }
 
+void listarUsuarios(void)
+{
+    FILE *archivo;
+    Usuario usuario;
+    int encontrados = 0;
+
+    system("cls");
+    printf("========================================\n");
+    printf("             Listado de usuarios\n");
+    printf("========================================\n");
+
+    archivo = fopen(ARCHIVO_USUARIOS, "rb");
+
+    if (archivo == NULL)
+    {
+        printf("No hay usuarios cargados.\n");
+        return;
+    }
+
+    while (fread(&usuario, sizeof(Usuario), 1, archivo) == 1)
+    {
+        if (usuario.activo)
+        {
+            mostrarUsuario(usuario);
+            encontrados = 1;
+        }
+    }
+
+    fclose(archivo);
+
+    if (!encontrados)
+    {
+        printf("No hay usuarios activos.\n");
+    }
+}
+
+void bajaUsuario(void)
+{
+    FILE *archivo;
+    Usuario usuario;
+    int id;
+    long posicion;
+
+    listarUsuarios();
+    id = leerEntero("\nIngrese el ID del usuario a dar de baja: ");
+
+    if (!buscarUsuarioPorId(id, &usuario, &posicion))
+    {
+        printf("\nNo se encontro un usuario activo con ese ID.\n");
+        pausar();
+        return;
+    }
+
+    if (usuario.rol == ROL_ADMIN)
+    {
+        printf("\nNo se puede dar de baja al administrador principal.\n");
+        pausar();
+        return;
+    }
+
+    if (!confirmar("Confirma la baja del usuario"))
+    {
+        printf("\nOperacion cancelada.\n");
+        pausar();
+        return;
+    }
+
+    usuario.activo = 0;
+
+    archivo = fopen(ARCHIVO_USUARIOS, "r+b");
+
+    if (archivo == NULL)
+    {
+        printf("\nNo se pudo abrir el archivo de usuarios.\n");
+        pausar();
+        return;
+    }
+
+    fseek(archivo, posicion, SEEK_SET);
+    fwrite(&usuario, sizeof(Usuario), 1, archivo);
+    fclose(archivo);
+
+    printf("\nUsuario dado de baja correctamente.\n");
+    pausar();
+}
+
 int obtenerSiguienteIdUsuario(void)
 {
     FILE *archivo;
@@ -197,4 +315,51 @@ int buscarUsuarioPorLogin(const char email[], const char password[], Usuario *us
 
     fclose(archivo);
     return 0;
+}
+
+int buscarUsuarioPorId(int id, Usuario *usuario, long *posicion)
+{
+    FILE *archivo;
+    Usuario aux;
+    long posActual;
+
+    archivo = fopen(ARCHIVO_USUARIOS, "rb");
+
+    if (archivo == NULL)
+    {
+        return 0;
+    }
+
+    while (fread(&aux, sizeof(Usuario), 1, archivo) == 1)
+    {
+        posActual = ftell(archivo) - sizeof(Usuario);
+
+        if (aux.id == id && aux.activo)
+        {
+            if (usuario != NULL)
+            {
+                *usuario = aux;
+            }
+
+            if (posicion != NULL)
+            {
+                *posicion = posActual;
+            }
+
+            fclose(archivo);
+            return 1;
+        }
+    }
+
+    fclose(archivo);
+    return 0;
+}
+
+void mostrarUsuario(Usuario usuario)
+{
+    printf("ID: %d | Nombre: %s | Email: %s | Rol: %s\n",
+           usuario.id,
+           usuario.nombre,
+           usuario.email,
+           usuario.rol == ROL_ADMIN ? "Administrador" : "Usuario");
 }

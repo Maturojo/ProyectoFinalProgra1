@@ -5,6 +5,7 @@
 #include "generos.h"
 #include "usuarios.h"
 #include "utils.h"
+#include "visualizaciones.h"
 
 void mostrarMenuPrincipal(void);
 void menuAdministrador(Usuario usuario);
@@ -14,6 +15,7 @@ int main()
 {
     int opcion;
     Usuario usuarioLogueado;
+
 
     configurarColorConsola();
     inicializarUsuarios();
@@ -57,7 +59,7 @@ void mostrarMenuPrincipal(void)
 {
     system("cls");
     printf("========================================\n");
-    printf("   Plataforma de Streaming - Etapa 3\n");
+    printf("   Plataforma de Streaming - Etapa 6\n");
     printf("========================================\n");
     printf("1. Iniciar sesion\n");
     printf("2. Registrarse\n");
@@ -79,10 +81,11 @@ void menuAdministrador(Usuario usuario)
         printf("----------------------------------------\n");
         printf("1. Administrar generos\n");
         printf("2. Administrar contenidos\n");
+        printf("3. Administrar usuarios\n");
         printf("0. Cerrar sesion\n");
         printf("----------------------------------------\n");
 
-        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 2);
+        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 3);
 
         switch (opcion)
         {
@@ -92,6 +95,10 @@ void menuAdministrador(Usuario usuario)
 
             case 2:
                 menuContenidos();
+                break;
+
+            case 3:
+                menuUsuarios();
                 break;
 
             case 0:
@@ -116,15 +123,26 @@ void menuUsuarioComun(Usuario usuario)
         printf("Usuario: %s\n", usuario.nombre);
         printf("----------------------------------------\n");
         printf("1. Ver catalogo\n");
+        printf("2. Registrar visualizacion\n");
+        printf("3. Mis visualizaciones\n");
         printf("0. Cerrar sesion\n");
         printf("----------------------------------------\n");
 
-        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 1);
+        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 3);
 
         switch (opcion)
         {
             case 1:
                 listarContenidos();
+                pausar();
+                break;
+
+            case 2:
+                registrarVisualizacion(usuario);
+                break;
+
+            case 3:
+                listarVisualizacionesUsuario(usuario.id);
                 pausar();
                 break;
 
