@@ -363,3 +363,33 @@ void mostrarUsuario(Usuario usuario)
            usuario.email,
            usuario.rol == ROL_ADMIN ? "Administrador" : "Usuario");
 }
+
+
+int contarUsuarioActivos(void)
+{
+
+    FILE * archivo;
+    Usuario usuario;
+    int cantidad = 0;
+
+    archivo = fopen(ARCHIVO_USUARIOS, "rb");
+
+    if(archivo == NULL)
+
+    {
+        return 0;
+    }
+
+    while(fread(&usuario, sizeof(Usuario), 1, archivo))
+    {
+        if(usuario.activo)
+        {
+            cantidad++;
+        }
+
+    }
+
+    fclose(archivo);
+
+    return cantidad;
+}

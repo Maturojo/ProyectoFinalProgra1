@@ -78,6 +78,7 @@ void menuAdministrador(Usuario usuario)
         printf("           Menu administrador\n");
         printf("========================================\n");
         printf("Usuario: %s\n", usuario.nombre);
+        printf("Usuario activo: %d\n", contarUsuarioActivos());
         printf("----------------------------------------\n");
         printf("1. Administrar generos\n");
         printf("2. Administrar contenidos\n");

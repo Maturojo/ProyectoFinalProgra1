@@ -20,4 +20,5 @@ int buscarUsuarioPorLogin(const char email[], const char password[], Usuario *us
 int buscarUsuarioPorId(int id, Usuario *usuario, long *posicion);
 void mostrarUsuario(Usuario usuario);
 
+int contarUsuarioActivos(void);
 #endif
