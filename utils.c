@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
 #include "utils.h"
 
 void limpiarBuffer(void)
@@ -38,6 +39,38 @@ void leerCadena(char texto[], int tamanio)
     {
         limpiarBuffer();
     }
+}
+
+void leerPassword(char password[], int tamanio)
+{
+    int i = 0;
+    char tecla;
+
+    do
+    {
+        tecla = getch();
+
+        if (tecla == 13)
+        {
+            password[i] = '\0';
+            printf("\n");
+        }
+        else if (tecla == 8)
+        {
+            if (i > 0)
+            {
+                i--;
+                printf("\b \b");
+            }
+        }
+        else if (i < tamanio - 1)
+        {
+            password[i] = tecla;
+            i++;
+            printf("*");
+        }
+    }
+    while (tecla != 13);
 }
 
 int leerEntero(const char mensaje[])

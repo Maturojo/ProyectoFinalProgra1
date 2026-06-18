@@ -86,7 +86,7 @@ void registrarUsuario(void)
     leerCadena(usuario.email, TAM_EMAIL);
 
     printf("Password: ");
-    leerCadena(usuario.password, TAM_PASSWORD);
+    leerPassword(usuario.password, TAM_PASSWORD);
 
     if (strlen(usuario.nombre) == 0 || strlen(usuario.email) == 0 || strlen(usuario.password) == 0)
     {
@@ -136,7 +136,7 @@ int loginUsuario(Usuario *usuarioLogueado)
     leerCadena(email, TAM_EMAIL);
 
     printf("Password: ");
-    leerCadena(password, TAM_PASSWORD);
+    leerPassword(password, TAM_PASSWORD);
 
     if (buscarUsuarioPorLogin(email, password, usuarioLogueado))
     {
