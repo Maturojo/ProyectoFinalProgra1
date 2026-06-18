@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "generos.h"
 #include "utils.h"
 
@@ -59,7 +60,7 @@ void altaGenero(void)
     printf("Nombre: ");
     leerCadena(genero.nombre, TAM_NOMBRE);
 
-    if (strlen(genero.nombre) == 0)
+    if (!esNombreGeneroValido(genero.nombre))
     {
         printf("\nEl nombre no puede estar vacio.\n");
         pausar();
@@ -149,7 +150,7 @@ void modificarGenero(void)
     printf("Nuevo nombre: ");
     leerCadena(nuevoNombre, TAM_NOMBRE);
 
-    if (strlen(nuevoNombre) == 0)
+    if (!esNombreGeneroValido(nuevoNombre))
     {
         printf("\nEl nombre no puede estar vacio.\n");
         pausar();
@@ -311,6 +312,21 @@ int existeGeneroActivoConNombre(const char nombre[])
     }
 
     fclose(archivo);
+    return 0;
+}
+
+int esNombreGeneroValido(const char nombre[])
+{
+    int i;
+
+    for (i = 0; nombre[i] != '\0'; i++)
+    {
+        if (!isspace((unsigned char)nombre[i]))
+        {
+            return 1;
+        }
+    }
+
     return 0;
 }
 

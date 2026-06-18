@@ -14,6 +14,7 @@ void bajaGenero(void);
 int obtenerSiguienteIdGenero(void);
 int buscarGeneroPorId(int id, Genero *genero, long *posicion);
 int existeGeneroActivoConNombre(const char nombre[]);
+int esNombreGeneroValido(const char nombre[]);
 void mostrarGenero(Genero genero);
 
 #endif
