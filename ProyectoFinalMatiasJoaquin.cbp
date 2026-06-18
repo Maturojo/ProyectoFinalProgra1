@@ -51,6 +51,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="utils.h" />
+		<Unit filename="visualizaciones.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="visualizaciones.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
