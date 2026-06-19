@@ -4,7 +4,7 @@
 #include "usuarios.h"
 #include "utils.h"
 
-void inicializarUsuarios()
+void inicializarUsuarios(void)
 {
     FILE *archivo;
     Usuario admin;
@@ -37,7 +37,7 @@ void inicializarUsuarios()
     fclose(archivo);
 }
 
-void menuUsuarios()
+void menuUsuarios(void)
 {
     int opcion;
 
@@ -69,7 +69,7 @@ void menuUsuarios()
     while (opcion != 0);
 }
 
-void registrarUsuario()
+void registrarUsuario(void)
 {
     FILE *archivo;
     Usuario usuario;
@@ -139,8 +139,13 @@ int loginUsuario(Usuario *usuarioLogueado)
     printf("              Iniciar sesion\n");
     printf("========================================\n");
 
-    printf("Email: ");
+    printf("Email (0 para volver): ");
     leerCadena(email, TAM_EMAIL);
+
+    if (strcmp(email, "0") == 0)
+    {
+        return 0;
+    }
 
     printf("Password: ");
     leerPassword(password, TAM_PASSWORD);
@@ -159,7 +164,7 @@ int loginUsuario(Usuario *usuarioLogueado)
     return 0;
 }
 
-void listarUsuarios()
+void listarUsuarios(void)
 {
     FILE *archivo;
     Usuario usuario;
@@ -195,7 +200,7 @@ void listarUsuarios()
     }
 }
 
-void bajaUsuario()
+void bajaUsuario(void)
 {
     FILE *archivo;
     Usuario usuario;
@@ -245,7 +250,7 @@ void bajaUsuario()
     pausar();
 }
 
-int obtenerSiguienteIdUsuario()
+int obtenerSiguienteIdUsuario(void)
 {
     FILE *archivo;
     Usuario usuario;
@@ -374,7 +379,7 @@ void mostrarUsuario(Usuario usuario)
 }
 
 
-int contarUsuarioActivos()
+int contarUsuarioActivos(void)
 {
 
     FILE * archivo;
