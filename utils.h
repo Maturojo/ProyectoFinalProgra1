@@ -3,6 +3,11 @@
 
 void limpiarBuffer(void);
 void configurarColorConsola(void);
+void colorNormal(void);
+void colorError(void);
+void colorExito(void);
+void mostrarMensajeError(const char mensaje[]);
+void mostrarMensajeExito(const char mensaje[]);
 void pausar(void);
 void leerCadena(char texto[], int tamanio);
 void leerPassword(char password[], int tamanio);

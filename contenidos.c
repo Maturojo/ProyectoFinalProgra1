@@ -73,14 +73,14 @@ void altaContenido(void)
 
     if (!buscarGeneroPorId(contenido.idGenero, &genero, NULL))
     {
-        printf("\nNo existe un genero activo con ese ID.\n");
+        mostrarMensajeError("\nNo existe un genero activo con ese ID.\n");
         pausar();
         return;
     }
 
     if (strlen(contenido.titulo) == 0 || strlen(contenido.descripcion) == 0)
     {
-        printf("\nTitulo y descripcion son obligatorios.\n");
+        mostrarMensajeError("\nTitulo y descripcion son obligatorios.\n");
         pausar();
         return;
     }
@@ -92,7 +92,7 @@ void altaContenido(void)
 
     if (archivo == NULL)
     {
-        printf("\nNo se pudo abrir el archivo de contenidos.\n");
+        mostrarMensajeError("\nNo se pudo abrir el archivo de contenidos.\n");
         pausar();
         return;
     }
@@ -100,7 +100,9 @@ void altaContenido(void)
     fwrite(&contenido, sizeof(Contenido), 1, archivo);
     fclose(archivo);
 
+    colorExito();
     printf("\nContenido guardado correctamente con ID %d.\n", contenido.id);
+    colorNormal();
     pausar();
 }
 
@@ -153,7 +155,7 @@ void modificarContenido(void)
 
     if (!buscarContenidoPorId(id, &contenido, &posicion))
     {
-        printf("\nNo se encontro un contenido activo con ese ID.\n");
+        mostrarMensajeError("\nNo se encontro un contenido activo con ese ID.\n");
         pausar();
         return;
     }
@@ -173,14 +175,14 @@ void modificarContenido(void)
 
     if (!buscarGeneroPorId(contenido.idGenero, &genero, NULL))
     {
-        printf("\nNo existe un genero activo con ese ID.\n");
+        mostrarMensajeError("\nNo existe un genero activo con ese ID.\n");
         pausar();
         return;
     }
 
     if (strlen(contenido.titulo) == 0 || strlen(contenido.descripcion) == 0)
     {
-        printf("\nTitulo y descripcion son obligatorios.\n");
+        mostrarMensajeError("\nTitulo y descripcion son obligatorios.\n");
         pausar();
         return;
     }
@@ -189,7 +191,7 @@ void modificarContenido(void)
 
     if (archivo == NULL)
     {
-        printf("\nNo se pudo abrir el archivo de contenidos.\n");
+        mostrarMensajeError("\nNo se pudo abrir el archivo de contenidos.\n");
         pausar();
         return;
     }
@@ -198,7 +200,7 @@ void modificarContenido(void)
     fwrite(&contenido, sizeof(Contenido), 1, archivo);
     fclose(archivo);
 
-    printf("\nContenido modificado correctamente.\n");
+    mostrarMensajeExito("\nContenido modificado correctamente.\n");
     pausar();
 }
 
@@ -214,14 +216,14 @@ void bajaContenido(void)
 
     if (!buscarContenidoPorId(id, &contenido, &posicion))
     {
-        printf("\nNo se encontro un contenido activo con ese ID.\n");
+        mostrarMensajeError("\nNo se encontro un contenido activo con ese ID.\n");
         pausar();
         return;
     }
 
     if (!confirmar("Confirma la baja del contenido"))
     {
-        printf("\nOperacion cancelada.\n");
+        mostrarMensajeError("\nOperacion cancelada.\n");
         pausar();
         return;
     }
@@ -232,7 +234,7 @@ void bajaContenido(void)
 
     if (archivo == NULL)
     {
-        printf("\nNo se pudo abrir el archivo de contenidos.\n");
+        mostrarMensajeError("\nNo se pudo abrir el archivo de contenidos.\n");
         pausar();
         return;
     }
@@ -241,7 +243,7 @@ void bajaContenido(void)
     fwrite(&contenido, sizeof(Contenido), 1, archivo);
     fclose(archivo);
 
-    printf("\nContenido dado de baja correctamente.\n");
+    mostrarMensajeExito("\nContenido dado de baja correctamente.\n");
     pausar();
 }
 

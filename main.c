@@ -46,7 +46,7 @@ int main()
                 break;
 
             case 0:
-                printf("\nSaliendo del sistema...\n");
+                mostrarMensajeExito("\nSaliendo del sistema...\n");
                 break;
         }
     }
@@ -102,7 +102,7 @@ void menuAdministrador(Usuario usuario)
                 break;
 
             case 0:
-                printf("\nSesion cerrada.\n");
+                mostrarMensajeExito("\nSesion cerrada.\n");
                 pausar();
                 break;
         }
@@ -147,7 +147,7 @@ void menuUsuarioComun(Usuario usuario)
                 break;
 
             case 0:
-                printf("\nSesion cerrada.\n");
+                mostrarMensajeExito("\nSesion cerrada.\n");
                 pausar();
                 break;
         }

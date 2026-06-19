@@ -21,7 +21,7 @@ void inicializarUsuarios(void)
 
     if (archivo == NULL)
     {
-        printf("\nNo se pudo crear el archivo de usuarios.\n");
+        mostrarMensajeError("\nNo se pudo crear el archivo de usuarios.\n");
         pausar();
         return;
     }
@@ -90,14 +90,14 @@ void registrarUsuario(void)
 
     if (strlen(usuario.nombre) == 0 || strlen(usuario.email) == 0 || strlen(usuario.password) == 0)
     {
-        printf("\nTodos los campos son obligatorios.\n");
+        mostrarMensajeError("\nTodos los campos son obligatorios.\n");
         pausar();
         return;
     }
 
     if (existeUsuarioActivoConEmail(usuario.email))
     {
-        printf("\nYa existe un usuario activo con ese email.\n");
+        mostrarMensajeError("\nYa existe un usuario activo con ese email.\n");
         pausar();
         return;
     }
@@ -110,7 +110,7 @@ void registrarUsuario(void)
 
     if (archivo == NULL)
     {
-        printf("\nNo se pudo abrir el archivo de usuarios.\n");
+        mostrarMensajeError("\nNo se pudo abrir el archivo de usuarios.\n");
         pausar();
         return;
     }
@@ -118,7 +118,7 @@ void registrarUsuario(void)
     fwrite(&usuario, sizeof(Usuario), 1, archivo);
     fclose(archivo);
 
-    printf("\nUsuario registrado correctamente.\n");
+    mostrarMensajeExito("\nUsuario registrado correctamente.\n");
     pausar();
 }
 
@@ -140,12 +140,14 @@ int loginUsuario(Usuario *usuarioLogueado)
 
     if (buscarUsuarioPorLogin(email, password, usuarioLogueado))
     {
+        colorExito();
         printf("\nBienvenido/a, %s.\n", usuarioLogueado->nombre);
+        colorNormal();
         pausar();
         return 1;
     }
 
-    printf("\nEmail o password incorrectos.\n");
+    mostrarMensajeError("\nEmail o password incorrectos.\n");
     pausar();
     return 0;
 }
@@ -198,21 +200,21 @@ void bajaUsuario(void)
 
     if (!buscarUsuarioPorId(id, &usuario, &posicion))
     {
-        printf("\nNo se encontro un usuario activo con ese ID.\n");
+        mostrarMensajeError("\nNo se encontro un usuario activo con ese ID.\n");
         pausar();
         return;
     }
 
     if (usuario.rol == ROL_ADMIN)
     {
-        printf("\nNo se puede dar de baja al administrador principal.\n");
+        mostrarMensajeError("\nNo se puede dar de baja al administrador principal.\n");
         pausar();
         return;
     }
 
     if (!confirmar("Confirma la baja del usuario"))
     {
-        printf("\nOperacion cancelada.\n");
+        mostrarMensajeError("\nOperacion cancelada.\n");
         pausar();
         return;
     }
@@ -223,7 +225,7 @@ void bajaUsuario(void)
 
     if (archivo == NULL)
     {
-        printf("\nNo se pudo abrir el archivo de usuarios.\n");
+        mostrarMensajeError("\nNo se pudo abrir el archivo de usuarios.\n");
         pausar();
         return;
     }
@@ -232,7 +234,7 @@ void bajaUsuario(void)
     fwrite(&usuario, sizeof(Usuario), 1, archivo);
     fclose(archivo);
 
-    printf("\nUsuario dado de baja correctamente.\n");
+    mostrarMensajeExito("\nUsuario dado de baja correctamente.\n");
     pausar();
 }
 

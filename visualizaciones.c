@@ -21,7 +21,7 @@ void registrarVisualizacion(Usuario usuario)
 
     if (!buscarContenidoPorId(visualizacion.idContenido, &contenido, NULL))
     {
-        printf("\nNo existe un contenido activo con ese ID.\n");
+        mostrarMensajeError("\nNo existe un contenido activo con ese ID.\n");
         pausar();
         return;
     }
@@ -31,7 +31,7 @@ void registrarVisualizacion(Usuario usuario)
 
     if (strlen(visualizacion.fecha) == 0)
     {
-        printf("\nLa fecha es obligatoria.\n");
+        mostrarMensajeError("\nLa fecha es obligatoria.\n");
         pausar();
         return;
     }
@@ -45,7 +45,7 @@ void registrarVisualizacion(Usuario usuario)
 
     if (archivo == NULL)
     {
-        printf("\nNo se pudo abrir el archivo de visualizaciones.\n");
+        mostrarMensajeError("\nNo se pudo abrir el archivo de visualizaciones.\n");
         pausar();
         return;
     }
@@ -53,7 +53,7 @@ void registrarVisualizacion(Usuario usuario)
     fwrite(&visualizacion, sizeof(Visualizacion), 1, archivo);
     fclose(archivo);
 
-    printf("\nVisualizacion registrada correctamente.\n");
+    mostrarMensajeExito("\nVisualizacion registrada correctamente.\n");
     pausar();
 }
 

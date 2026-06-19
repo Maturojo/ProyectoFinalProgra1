@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
+#include "color.h"
 #include "utils.h"
 
 void limpiarBuffer(void)
@@ -15,7 +16,36 @@ void limpiarBuffer(void)
 
 void configurarColorConsola(void)
 {
-    system("color 0B");
+    colorNormal();
+}
+
+void colorNormal(void)
+{
+    color(11);
+}
+
+void colorError(void)
+{
+    color(4);
+}
+
+void colorExito(void)
+{
+    color(10);
+}
+
+void mostrarMensajeError(const char mensaje[])
+{
+    colorError();
+    printf("%s", mensaje);
+    colorNormal();
+}
+
+void mostrarMensajeExito(const char mensaje[])
+{
+    colorExito();
+    printf("%s", mensaje);
+    colorNormal();
 }
 
 void pausar(void)
@@ -86,7 +116,7 @@ int leerEntero(const char mensaje[])
 
         if (resultado != 1)
         {
-            printf("Dato invalido. Ingrese un numero entero.\n");
+            mostrarMensajeError("Dato invalido. Ingrese un numero entero.\n");
         }
     }
     while (resultado != 1);
@@ -104,7 +134,9 @@ int leerEnteroRango(const char mensaje[], int minimo, int maximo)
 
         if (valor < minimo || valor > maximo)
         {
+            colorError();
             printf("Opcion invalida. Ingrese un valor entre %d y %d.\n", minimo, maximo);
+            colorNormal();
         }
     }
     while (valor < minimo || valor > maximo);
@@ -124,7 +156,7 @@ int confirmar(const char mensaje[])
 
         if (opcion != 's' && opcion != 'S' && opcion != 'n' && opcion != 'N')
         {
-            printf("Respuesta invalida. Ingrese s o n.\n");
+            mostrarMensajeError("Respuesta invalida. Ingrese s o n.\n");
         }
     }
     while (opcion != 's' && opcion != 'S' && opcion != 'n' && opcion != 'N');

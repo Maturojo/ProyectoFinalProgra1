@@ -62,14 +62,14 @@ void altaGenero(void)
 
     if (!esNombreGeneroValido(genero.nombre))
     {
-        printf("\nEl nombre no puede estar vacio.\n");
+        mostrarMensajeError("\nEl nombre no puede estar vacio.\n");
         pausar();
         return;
     }
 
     if (existeGeneroActivoConNombre(genero.nombre))
     {
-        printf("\nYa existe un genero activo con ese nombre.\n");
+        mostrarMensajeError("\nYa existe un genero activo con ese nombre.\n");
         pausar();
         return;
     }
@@ -81,7 +81,7 @@ void altaGenero(void)
 
     if (archivo == NULL)
     {
-        printf("\nNo se pudo abrir el archivo de generos.\n");
+        mostrarMensajeError("\nNo se pudo abrir el archivo de generos.\n");
         pausar();
         return;
     }
@@ -89,7 +89,9 @@ void altaGenero(void)
     fwrite(&genero, sizeof(Genero), 1, archivo);
     fclose(archivo);
 
+    colorExito();
     printf("\nGenero guardado correctamente con ID %d.\n", genero.id);
+    colorNormal();
     pausar();
 }
 
@@ -142,7 +144,7 @@ void modificarGenero(void)
 
     if (!buscarGeneroPorId(id, &genero, &posicion))
     {
-        printf("\nNo se encontro un genero activo con ese ID.\n");
+        mostrarMensajeError("\nNo se encontro un genero activo con ese ID.\n");
         pausar();
         return;
     }
@@ -152,14 +154,14 @@ void modificarGenero(void)
 
     if (!esNombreGeneroValido(nuevoNombre))
     {
-        printf("\nEl nombre no puede estar vacio.\n");
+        mostrarMensajeError("\nEl nombre no puede estar vacio.\n");
         pausar();
         return;
     }
 
     if (strcmp(genero.nombre, nuevoNombre) != 0 && existeGeneroActivoConNombre(nuevoNombre))
     {
-        printf("\nYa existe un genero activo con ese nombre.\n");
+        mostrarMensajeError("\nYa existe un genero activo con ese nombre.\n");
         pausar();
         return;
     }
@@ -170,7 +172,7 @@ void modificarGenero(void)
 
     if (archivo == NULL)
     {
-        printf("\nNo se pudo abrir el archivo de generos.\n");
+        mostrarMensajeError("\nNo se pudo abrir el archivo de generos.\n");
         pausar();
         return;
     }
@@ -179,7 +181,7 @@ void modificarGenero(void)
     fwrite(&genero, sizeof(Genero), 1, archivo);
     fclose(archivo);
 
-    printf("\nGenero modificado correctamente.\n");
+    mostrarMensajeExito("\nGenero modificado correctamente.\n");
     pausar();
 }
 
@@ -195,14 +197,14 @@ void bajaGenero(void)
 
     if (!buscarGeneroPorId(id, &genero, &posicion))
     {
-        printf("\nNo se encontro un genero activo con ese ID.\n");
+        mostrarMensajeError("\nNo se encontro un genero activo con ese ID.\n");
         pausar();
         return;
     }
 
     if (!confirmar("Confirma la baja del genero"))
     {
-        printf("\nOperacion cancelada.\n");
+        mostrarMensajeError("\nOperacion cancelada.\n");
         pausar();
         return;
     }
@@ -213,7 +215,7 @@ void bajaGenero(void)
 
     if (archivo == NULL)
     {
-        printf("\nNo se pudo abrir el archivo de generos.\n");
+        mostrarMensajeError("\nNo se pudo abrir el archivo de generos.\n");
         pausar();
         return;
     }
@@ -222,7 +224,7 @@ void bajaGenero(void)
     fwrite(&genero, sizeof(Genero), 1, archivo);
     fclose(archivo);
 
-    printf("\nGenero dado de baja correctamente.\n");
+    mostrarMensajeExito("\nGenero dado de baja correctamente.\n");
     pausar();
 }
 
