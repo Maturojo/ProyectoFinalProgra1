@@ -370,11 +370,23 @@ int buscarContenidoPorId(int id, Contenido *contenido, long *posicion)
 
 void mostrarContenido(Contenido contenido)
 {
-    printf("ID: %d | Titulo: %s | Anio: %d | Duracion: %d min | Tipo: %s | ID genero: %d\n",
+    Genero genero;
+    char nombreGenero[TAM_NOMBRE];
+
+    if (buscarGeneroPorId(contenido.idGenero, &genero, NULL))
+    {
+        strcpy(nombreGenero, genero.nombre);
+    }
+    else
+    {
+        strcpy(nombreGenero, "Genero dado de baja");
+    }
+
+    printf("ID: %d | Titulo: %s | Anio: %d | Duracion: %d min | Tipo: %s | Genero: %s\n",
            contenido.id,
            contenido.titulo,
            contenido.anio,
            contenido.duracionMinutos,
            contenido.tipo == TIPO_PELICULA ? "Pelicula" : "Serie",
-           contenido.idGenero);
+           nombreGenero);
 }

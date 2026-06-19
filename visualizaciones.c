@@ -30,9 +30,9 @@ void registrarVisualizacion(Usuario usuario)
     printf("Fecha (dd/mm/aaaa): ");
     leerCadena(visualizacion.fecha, TAM_FECHA);
 
-    if (strlen(visualizacion.fecha) == 0)
+    if (!validarFecha(visualizacion.fecha))
     {
-        mostrarMensajeError("\nLa fecha es obligatoria.\n");
+        mostrarMensajeError("\nLa fecha debe tener formato dd/mm/aaaa.\n");
         pausar();
         return;
     }

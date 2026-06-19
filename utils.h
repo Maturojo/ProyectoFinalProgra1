@@ -14,5 +14,7 @@ void leerPassword(char password[], int tamanio);
 int leerEntero(const char mensaje[]);
 int leerEnteroRango(const char mensaje[], int minimo, int maximo);
 int confirmar(const char mensaje[]);
+int validarEmail(const char email[]);
+int validarFecha(const char fecha[]);
 
 #endif

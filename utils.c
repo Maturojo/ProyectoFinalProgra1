@@ -163,3 +163,49 @@ int confirmar(const char mensaje[])
 
     return opcion == 's' || opcion == 'S';
 }
+
+int validarEmail(const char email[])
+{
+    int i;
+    int tieneArroba = 0;
+    int tienePunto = 0;
+
+    for (i = 0; email[i] != '\0'; i++)
+    {
+        if (email[i] == '@')
+        {
+            tieneArroba = 1;
+        }
+        if (email[i] == '.')
+        {
+            tienePunto = 1;
+        }
+    }
+
+    return tieneArroba && tienePunto;
+}
+
+int validarFecha(const char fecha[])
+{
+    int i;
+
+    if (strlen(fecha) != 10)
+    {
+        return 0;
+    }
+
+    if (fecha[2] != '/' || fecha[5] != '/')
+    {
+        return 0;
+    }
+
+    for (i = 0; i < 10; i++)
+    {
+        if (i != 2 && i != 5 && (fecha[i] < '0' || fecha[i] > '9'))
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}

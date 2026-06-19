@@ -95,6 +95,13 @@ void registrarUsuario(void)
         return;
     }
 
+    if (!validarEmail(usuario.email))
+    {
+        mostrarMensajeError("\nEl email debe tener formato valido.\n");
+        pausar();
+        return;
+    }
+
     if (existeUsuarioActivoConEmail(usuario.email))
     {
         mostrarMensajeError("\nYa existe un usuario activo con ese email.\n");
