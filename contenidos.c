@@ -5,7 +5,7 @@
 #include "generos.h"
 #include "utils.h"
 
-void menuContenidos(void)
+void menuContenidos()
 {
     int opcion;
 
@@ -52,7 +52,7 @@ void menuContenidos(void)
     while (opcion != 0);
 }
 
-void altaContenido(void)
+void altaContenido()
 {
     FILE *archivo;
     Contenido contenido;
@@ -111,7 +111,7 @@ void altaContenido(void)
     pausar();
 }
 
-void listarContenidos(void)
+void listarContenidos()
 {
     FILE *archivo;
     Contenido contenido;
@@ -147,7 +147,7 @@ void listarContenidos(void)
     }
 }
 
-void buscarContenidosPorTitulo(void)
+void buscarContenidosPorTitulo()
 {
     FILE *archivo;
     Contenido contenido;
@@ -199,7 +199,7 @@ void buscarContenidosPorTitulo(void)
     pausar();
 }
 
-void modificarContenido(void)
+void modificarContenido()
 {
     FILE *archivo;
     Contenido contenido;
@@ -261,7 +261,7 @@ void modificarContenido(void)
     pausar();
 }
 
-void bajaContenido(void)
+void bajaContenido()
 {
     FILE *archivo;
     Contenido contenido;
@@ -304,7 +304,7 @@ void bajaContenido(void)
     pausar();
 }
 
-int obtenerSiguienteIdContenido(void)
+int obtenerSiguienteIdContenido()
 {
     FILE *archivo;
     Contenido contenido;

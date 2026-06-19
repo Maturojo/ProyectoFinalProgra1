@@ -4,7 +4,7 @@
 #include "usuarios.h"
 #include "utils.h"
 
-void inicializarUsuarios(void)
+void inicializarUsuarios()
 {
     FILE *archivo;
     Usuario admin;
@@ -37,7 +37,7 @@ void inicializarUsuarios(void)
     fclose(archivo);
 }
 
-void menuUsuarios(void)
+void menuUsuarios()
 {
     int opcion;
 
@@ -69,7 +69,7 @@ void menuUsuarios(void)
     while (opcion != 0);
 }
 
-void registrarUsuario(void)
+void registrarUsuario()
 {
     FILE *archivo;
     Usuario usuario;
@@ -159,7 +159,7 @@ int loginUsuario(Usuario *usuarioLogueado)
     return 0;
 }
 
-void listarUsuarios(void)
+void listarUsuarios()
 {
     FILE *archivo;
     Usuario usuario;
@@ -195,7 +195,7 @@ void listarUsuarios(void)
     }
 }
 
-void bajaUsuario(void)
+void bajaUsuario()
 {
     FILE *archivo;
     Usuario usuario;
@@ -245,7 +245,7 @@ void bajaUsuario(void)
     pausar();
 }
 
-int obtenerSiguienteIdUsuario(void)
+int obtenerSiguienteIdUsuario()
 {
     FILE *archivo;
     Usuario usuario;
@@ -374,7 +374,7 @@ void mostrarUsuario(Usuario usuario)
 }
 
 
-int contarUsuarioActivos(void)
+int contarUsuarioActivos()
 {
 
     FILE * archivo;

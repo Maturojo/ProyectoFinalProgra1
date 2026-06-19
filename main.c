@@ -8,7 +8,7 @@
 #include "utils.h"
 #include "visualizaciones.h"
 
-void mostrarMenuPrincipal(void);
+void mostrarMenuPrincipal();
 void menuAdministrador(Usuario usuario);
 void menuUsuarioComun(Usuario usuario);
 
@@ -56,7 +56,7 @@ int main()
     return 0;
 }
 
-void mostrarMenuPrincipal(void)
+void mostrarMenuPrincipal()
 {
     system("cls");
     printf("========================================\n");

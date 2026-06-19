@@ -5,13 +5,13 @@
 
 #define ARCHIVO_GENEROS "generos.dat"
 
-void menuGeneros(void);
-void altaGenero(void);
-void listarGeneros(void);
-void modificarGenero(void);
-void bajaGenero(void);
+void menuGeneros();
+void altaGenero();
+void listarGeneros();
+void modificarGenero();
+void bajaGenero();
 
-int obtenerSiguienteIdGenero(void);
+int obtenerSiguienteIdGenero();
 int buscarGeneroPorId(int id, Genero *genero, long *posicion);
 int existeGeneroActivoConNombre(const char nombre[]);
 int esNombreGeneroValido(const char nombre[]);

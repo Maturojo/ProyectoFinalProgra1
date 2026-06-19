@@ -5,7 +5,7 @@
 #include "color.h"
 #include "utils.h"
 
-void limpiarBuffer(void)
+void limpiarBuffer()
 {
     int c;
 
@@ -14,22 +14,22 @@ void limpiarBuffer(void)
     }
 }
 
-void configurarColorConsola(void)
+void configurarColorConsola()
 {
     colorNormal();
 }
 
-void colorNormal(void)
+void colorNormal()
 {
     color(11);
 }
 
-void colorError(void)
+void colorError()
 {
     color(4);
 }
 
-void colorExito(void)
+void colorExito()
 {
     color(10);
 }
@@ -48,7 +48,7 @@ void mostrarMensajeExito(const char mensaje[])
     colorNormal();
 }
 
-void pausar(void)
+void pausar()
 {
     printf("\nPresione ENTER para continuar...");
     getchar();

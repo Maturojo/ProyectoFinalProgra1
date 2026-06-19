@@ -9,12 +9,12 @@
 #include "visualizaciones.h"
 
 int archivoTieneRegistros(const char nombreArchivo[], int tamanioRegistro);
-void cargarGenerosPrueba(void);
-void cargarUsuariosPrueba(void);
-void cargarContenidosPrueba(void);
-void cargarVisualizacionesPrueba(void);
+void cargarGenerosPrueba();
+void cargarUsuariosPrueba();
+void cargarContenidosPrueba();
+void cargarVisualizacionesPrueba();
 
-void cargarDatosPrueba(void)
+void cargarDatosPrueba()
 {
     system("cls");
     printf("========================================\n");
@@ -49,7 +49,7 @@ int archivoTieneRegistros(const char nombreArchivo[], int tamanioRegistro)
     return tamanio >= tamanioRegistro;
 }
 
-void cargarGenerosPrueba(void)
+void cargarGenerosPrueba()
 {
     FILE *archivo;
     Genero generos[4] = {
@@ -78,7 +78,7 @@ void cargarGenerosPrueba(void)
     printf("Generos: cargados.\n");
 }
 
-void cargarUsuariosPrueba(void)
+void cargarUsuariosPrueba()
 {
     FILE *archivo;
     Usuario usuario;
@@ -117,7 +117,7 @@ void cargarUsuariosPrueba(void)
     printf("Usuarios: cargados.\n");
 }
 
-void cargarContenidosPrueba(void)
+void cargarContenidosPrueba()
 {
     FILE *archivo;
     Contenido contenidos[3] = {
@@ -145,7 +145,7 @@ void cargarContenidosPrueba(void)
     printf("Contenidos: cargados.\n");
 }
 
-void cargarVisualizacionesPrueba(void)
+void cargarVisualizacionesPrueba()
 {
     FILE *archivo;
     Visualizacion visualizaciones[3] = {

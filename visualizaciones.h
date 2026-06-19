@@ -7,9 +7,9 @@
 
 void registrarVisualizacion(Usuario usuario);
 void listarVisualizacionesUsuario(int idUsuario);
-void listarTodasVisualizaciones(void);
+void listarTodasVisualizaciones();
 
-int obtenerSiguienteIdVisualizacion(void);
+int obtenerSiguienteIdVisualizacion();
 void mostrarVisualizacion(Visualizacion visualizacion);
 
 #endif

@@ -7,14 +7,14 @@
 #define TIPO_PELICULA 1
 #define TIPO_SERIE 2
 
-void menuContenidos(void);
-void altaContenido(void);
-void listarContenidos(void);
-void buscarContenidosPorTitulo(void);
-void modificarContenido(void);
-void bajaContenido(void);
+void menuContenidos();
+void altaContenido();
+void listarContenidos();
+void buscarContenidosPorTitulo();
+void modificarContenido();
+void bajaContenido();
 
-int obtenerSiguienteIdContenido(void);
+int obtenerSiguienteIdContenido();
 int buscarContenidoPorId(int id, Contenido *contenido, long *posicion);
 void mostrarContenido(Contenido contenido);
 

@@ -94,7 +94,7 @@ void listarVisualizacionesUsuario(int idUsuario)
     }
 }
 
-void listarTodasVisualizaciones(void)
+void listarTodasVisualizaciones()
 {
     FILE *archivo;
     Visualizacion visualizacion;
@@ -152,7 +152,7 @@ void listarTodasVisualizaciones(void)
     }
 }
 
-int obtenerSiguienteIdVisualizacion(void)
+int obtenerSiguienteIdVisualizacion()
 {
     FILE *archivo;
     Visualizacion visualizacion;

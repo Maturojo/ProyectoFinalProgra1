@@ -5,7 +5,7 @@
 #include "generos.h"
 #include "utils.h"
 
-void menuGeneros(void)
+void menuGeneros()
 {
     int opcion;
 
@@ -47,7 +47,7 @@ void menuGeneros(void)
     while (opcion != 0);
 }
 
-void altaGenero(void)
+void altaGenero()
 {
     FILE *archivo;
     Genero genero;
@@ -95,7 +95,7 @@ void altaGenero(void)
     pausar();
 }
 
-void listarGeneros(void)
+void listarGeneros()
 {
     FILE *archivo;
     Genero genero;
@@ -131,7 +131,7 @@ void listarGeneros(void)
     }
 }
 
-void modificarGenero(void)
+void modificarGenero()
 {
     FILE *archivo;
     Genero genero;
@@ -185,7 +185,7 @@ void modificarGenero(void)
     pausar();
 }
 
-void bajaGenero(void)
+void bajaGenero()
 {
     FILE *archivo;
     Genero genero;
@@ -228,7 +228,7 @@ void bajaGenero(void)
     pausar();
 }
 
-int obtenerSiguienteIdGenero(void)
+int obtenerSiguienteIdGenero()
 {
     FILE *archivo;
     Genero genero;

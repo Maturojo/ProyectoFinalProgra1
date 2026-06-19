@@ -1,14 +1,14 @@
 #ifndef UTILS_H_INCLUDED
 #define UTILS_H_INCLUDED
 
-void limpiarBuffer(void);
-void configurarColorConsola(void);
-void colorNormal(void);
-void colorError(void);
-void colorExito(void);
+void limpiarBuffer();
+void configurarColorConsola();
+void colorNormal();
+void colorError();
+void colorExito();
 void mostrarMensajeError(const char mensaje[]);
 void mostrarMensajeExito(const char mensaje[]);
-void pausar(void);
+void pausar();
 void leerCadena(char texto[], int tamanio);
 void leerPassword(char password[], int tamanio);
 int leerEntero(const char mensaje[]);
