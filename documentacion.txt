@@ -1,0 +1,336 @@
+DOCUMENTACION DE FUNCIONES - PROYECTO FINAL PROGRAMACION I
+
+Proyecto: Plataforma de streaming tipo Netflix
+
+ARCHIVO: main.c
+
+int main()
+Descripcion: punto de entrada del programa. Configura el color de consola, inicializa el archivo de usuarios y muestra el menu principal.
+Parametros: no recibe.
+Retorno: int, devuelve 0 al finalizar correctamente.
+
+void mostrarMenuPrincipal()
+Descripcion: muestra las opciones principales del sistema.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void menuAdministrador(Usuario usuario)
+Descripcion: muestra el menu del administrador y permite acceder a generos, contenidos, usuarios, reportes y datos de prueba.
+Parametros: Usuario usuario, usuario administrador logueado.
+Retorno: no devuelve valor.
+
+void menuUsuarioComun(Usuario usuario)
+Descripcion: muestra el menu del usuario comun para ver catalogo, buscar contenido, registrar visualizaciones y ver historial.
+Parametros: Usuario usuario, usuario comun logueado.
+Retorno: no devuelve valor.
+
+
+ARCHIVO: utils.c
+
+void limpiarBuffer()
+Descripcion: limpia caracteres sobrantes del buffer de entrada.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void configurarColorConsola()
+Descripcion: configura el color normal inicial de la consola.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void colorNormal()
+Descripcion: cambia el texto al color normal del sistema.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void colorError()
+Descripcion: cambia el texto a color rojo para mensajes de error.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void colorExito()
+Descripcion: cambia el texto a color verde para mensajes correctos.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void mostrarMensajeError(const char mensaje[])
+Descripcion: muestra un mensaje en color rojo y luego vuelve al color normal.
+Parametros: const char mensaje[], texto a mostrar.
+Retorno: no devuelve valor.
+
+void mostrarMensajeExito(const char mensaje[])
+Descripcion: muestra un mensaje en color verde y luego vuelve al color normal.
+Parametros: const char mensaje[], texto a mostrar.
+Retorno: no devuelve valor.
+
+void pausar()
+Descripcion: pausa la ejecucion hasta que el usuario presione ENTER.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void leerCadena(char texto[], int tamanio)
+Descripcion: lee una cadena de texto con espacios y elimina el salto de linea final.
+Parametros: char texto[], arreglo donde se guarda el texto; int tamanio, capacidad maxima.
+Retorno: no devuelve valor.
+
+void leerPassword(char password[], int tamanio)
+Descripcion: lee una password mostrando asteriscos en pantalla.
+Parametros: char password[], arreglo donde se guarda la password; int tamanio, capacidad maxima.
+Retorno: no devuelve valor.
+
+int leerEntero(const char mensaje[])
+Descripcion: pide un numero entero y valida que el dato ingresado sea correcto.
+Parametros: const char mensaje[], texto que se muestra al pedir el dato.
+Retorno: int, numero ingresado.
+
+int leerEnteroRango(const char mensaje[], int minimo, int maximo)
+Descripcion: pide un numero entero dentro de un rango.
+Parametros: const char mensaje[], texto mostrado; int minimo, valor minimo; int maximo, valor maximo.
+Retorno: int, numero valido ingresado.
+
+int confirmar(const char mensaje[])
+Descripcion: pide confirmacion al usuario con s/n.
+Parametros: const char mensaje[], pregunta a mostrar.
+Retorno: int, 1 si confirma, 0 si cancela.
+
+int validarEmail(const char email[])
+Descripcion: valida de forma simple que un email tenga arroba y punto.
+Parametros: const char email[], email a validar.
+Retorno: int, 1 si es valido, 0 si no lo es.
+
+int validarFecha(const char fecha[])
+Descripcion: valida que una fecha tenga formato dd/mm/aaaa.
+Parametros: const char fecha[], fecha a validar.
+Retorno: int, 1 si cumple formato, 0 si no.
+
+
+ARCHIVO: color.c
+
+void color(int x)
+Descripcion: cambia el color del texto de la consola usando SetConsoleTextAttribute.
+Parametros: int x, numero de color.
+Retorno: no devuelve valor.
+
+
+ARCHIVO: usuarios.c
+
+void inicializarUsuarios()
+Descripcion: crea el archivo usuarios.dat con un administrador inicial si el archivo no existe.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void menuUsuarios()
+Descripcion: muestra opciones de administracion de usuarios.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void registrarUsuario()
+Descripcion: registra un usuario comun en usuarios.dat.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+int loginUsuario(Usuario *usuarioLogueado)
+Descripcion: valida email y password contra usuarios.dat.
+Parametros: Usuario *usuarioLogueado, puntero donde se guarda el usuario encontrado.
+Retorno: int, 1 si login correcto, 0 si falla o vuelve atras.
+
+void listarUsuarios()
+Descripcion: lista los usuarios activos.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void bajaUsuario()
+Descripcion: realiza baja logica de un usuario comun.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+int obtenerSiguienteIdUsuario()
+Descripcion: calcula el proximo ID disponible para usuario.
+Parametros: no recibe.
+Retorno: int, siguiente ID.
+
+int existeUsuarioActivoConEmail(const char email[])
+Descripcion: verifica si existe un usuario activo con un email dado.
+Parametros: const char email[], email a buscar.
+Retorno: int, 1 si existe, 0 si no.
+
+int buscarUsuarioPorLogin(const char email[], const char password[], Usuario *usuarioEncontrado)
+Descripcion: busca usuario activo por email y password.
+Parametros: email y password a comparar; Usuario *usuarioEncontrado donde se copia el resultado.
+Retorno: int, 1 si encuentra, 0 si no.
+
+int buscarUsuarioPorId(int id, Usuario *usuario, long *posicion)
+Descripcion: busca un usuario activo por ID y opcionalmente devuelve su posicion en el archivo.
+Parametros: int id; Usuario *usuario; long *posicion.
+Retorno: int, 1 si encuentra, 0 si no.
+
+void mostrarUsuario(Usuario usuario)
+Descripcion: muestra los datos principales de un usuario.
+Parametros: Usuario usuario, registro a mostrar.
+Retorno: no devuelve valor.
+
+int contarUsuarioActivos()
+Descripcion: cuenta usuarios activos en usuarios.dat.
+Parametros: no recibe.
+Retorno: int, cantidad de usuarios activos.
+
+
+ARCHIVO: generos.c
+
+void menuGeneros()
+Descripcion: muestra el menu de gestion de generos.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void altaGenero()
+Descripcion: carga un genero nuevo en generos.dat.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void listarGeneros()
+Descripcion: lista los generos activos.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void modificarGenero()
+Descripcion: modifica el nombre de un genero activo.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void bajaGenero()
+Descripcion: realiza baja logica de un genero.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+int obtenerSiguienteIdGenero()
+Descripcion: calcula el proximo ID disponible para genero.
+Parametros: no recibe.
+Retorno: int, siguiente ID.
+
+int buscarGeneroPorId(int id, Genero *genero, long *posicion)
+Descripcion: busca genero activo por ID.
+Parametros: int id; Genero *genero; long *posicion.
+Retorno: int, 1 si encuentra, 0 si no.
+
+int existeGeneroActivoConNombre(const char nombre[])
+Descripcion: verifica si existe un genero activo con ese nombre.
+Parametros: const char nombre[], nombre a buscar.
+Retorno: int, 1 si existe, 0 si no.
+
+int esNombreGeneroValido(const char nombre[])
+Descripcion: verifica que el nombre no este vacio ni compuesto solo por espacios.
+Parametros: const char nombre[], nombre a validar.
+Retorno: int, 1 si es valido, 0 si no.
+
+void mostrarGenero(Genero genero)
+Descripcion: muestra ID y nombre de un genero.
+Parametros: Genero genero, registro a mostrar.
+Retorno: no devuelve valor.
+
+
+ARCHIVO: contenidos.c
+
+void menuContenidos()
+Descripcion: muestra el menu de gestion de contenidos.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void altaContenido()
+Descripcion: carga una pelicula o serie en contenido.dat.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void listarContenidos()
+Descripcion: lista contenidos activos.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void buscarContenidosPorTitulo()
+Descripcion: busca contenidos cuyo titulo contenga un texto ingresado.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void modificarContenido()
+Descripcion: modifica datos de un contenido activo.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void bajaContenido()
+Descripcion: realiza baja logica de un contenido.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+int obtenerSiguienteIdContenido()
+Descripcion: calcula el proximo ID disponible para contenido.
+Parametros: no recibe.
+Retorno: int, siguiente ID.
+
+int buscarContenidoPorId(int id, Contenido *contenido, long *posicion)
+Descripcion: busca contenido activo por ID.
+Parametros: int id; Contenido *contenido; long *posicion.
+Retorno: int, 1 si encuentra, 0 si no.
+
+void mostrarContenido(Contenido contenido)
+Descripcion: muestra datos principales de un contenido, incluyendo nombre del genero.
+Parametros: Contenido contenido, registro a mostrar.
+Retorno: no devuelve valor.
+
+
+ARCHIVO: visualizaciones.c
+
+void registrarVisualizacion(Usuario usuario)
+Descripcion: registra que un usuario vio un contenido.
+Parametros: Usuario usuario, usuario logueado.
+Retorno: no devuelve valor.
+
+void listarVisualizacionesUsuario(int idUsuario)
+Descripcion: lista visualizaciones de un usuario especifico.
+Parametros: int idUsuario, ID del usuario.
+Retorno: no devuelve valor.
+
+void listarTodasVisualizaciones()
+Descripcion: reporte administrador con todas las visualizaciones.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+int obtenerSiguienteIdVisualizacion()
+Descripcion: calcula el proximo ID disponible para visualizacion.
+Parametros: no recibe.
+Retorno: int, siguiente ID.
+
+void mostrarVisualizacion(Visualizacion visualizacion)
+Descripcion: muestra una visualizacion con titulo del contenido si existe.
+Parametros: Visualizacion visualizacion, registro a mostrar.
+Retorno: no devuelve valor.
+
+
+ARCHIVO: datos_prueba.c
+
+void cargarDatosPrueba()
+Descripcion: carga datos iniciales para probar el sistema rapidamente.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+int archivoTieneRegistros(const char nombreArchivo[], int tamanioRegistro)
+Descripcion: verifica si un archivo binario ya tiene registros.
+Parametros: nombre del archivo y tamanio del registro.
+Retorno: int, 1 si tiene registros, 0 si no.
+
+void cargarGenerosPrueba()
+Descripcion: carga generos iniciales si generos.dat esta vacio.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void cargarUsuariosPrueba()
+Descripcion: carga usuarios comunes de prueba.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void cargarContenidosPrueba()
+Descripcion: carga contenidos de prueba.
+Parametros: no recibe.
+Retorno: no devuelve valor.
+
+void cargarVisualizacionesPrueba()
+Descripcion: carga visualizaciones de prueba.
+Parametros: no recibe.
+Retorno: no devuelve valor.

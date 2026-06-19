@@ -1,0 +1,24 @@
+PARTICIPACION DE CADA INTEGRANTE
+
+Proyecto: Plataforma de streaming tipo Netflix
+
+Matias Rojo:
+- Modulo principal: organizacion de menus en main.c.
+- Modulo usuarios: registro, login, roles, baja logica y listado.
+- Modulo utilidades: validaciones, lectura de datos, lectura de password con asteriscos y mensajes con color.
+- Integracion general del proyecto en CodeBlocks.
+
+Joaquin Grimaldi:
+- Modulo generos: alta, listado, modificacion, baja logica y busquedas.
+- Modulo contenidos: alta, listado, busqueda por titulo, modificacion y baja logica.
+- Modulo visualizaciones: registrar visualizaciones, listar historial y reporte para administrador.
+- Carga de datos de prueba para facilitar la demostracion.
+
+ACLARACION PARA LA DEFENSA:
+Aunque se dividieron tareas, ambos integrantes deben poder explicar cualquier parte del proyecto:
+- structs usados
+- archivos .dat
+- fread, fwrite y fseek
+- baja logica con activo
+- login y roles
+- relacion entre usuarios, contenidos, generos y visualizaciones
