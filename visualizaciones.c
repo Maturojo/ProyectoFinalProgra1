@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "contenidos.h"
+#include "usuarios.h"
 #include "utils.h"
 #include "visualizaciones.h"
 
@@ -90,6 +91,64 @@ void listarVisualizacionesUsuario(int idUsuario)
     if (!encontrados)
     {
         printf("No tenes visualizaciones registradas.\n");
+    }
+}
+
+void listarTodasVisualizaciones(void)
+{
+    FILE *archivo;
+    Visualizacion visualizacion;
+    Usuario usuario;
+    Contenido contenido;
+    int encontrados = 0;
+
+    system("cls");
+    printf("========================================\n");
+    printf("       Reporte de visualizaciones\n");
+    printf("========================================\n");
+
+    archivo = fopen(ARCHIVO_VISUALIZACIONES, "rb");
+
+    if (archivo == NULL)
+    {
+        printf("No hay visualizaciones registradas.\n");
+        return;
+    }
+
+    while (fread(&visualizacion, sizeof(Visualizacion), 1, archivo) == 1)
+    {
+        if (visualizacion.activo)
+        {
+            printf("ID: %d | ", visualizacion.id);
+
+            if (buscarUsuarioPorId(visualizacion.idUsuario, &usuario, NULL))
+            {
+                printf("Usuario: %s | ", usuario.nombre);
+            }
+            else
+            {
+                printf("Usuario dado de baja | ");
+            }
+
+            if (buscarContenidoPorId(visualizacion.idContenido, &contenido, NULL))
+            {
+                printf("Contenido: %s | ", contenido.titulo);
+            }
+            else
+            {
+                printf("Contenido dado de baja | ");
+            }
+
+            printf("Fecha: %s | Minutos vistos: %d\n", visualizacion.fecha, visualizacion.minutosVistos);
+            encontrados = 1;
+        }
+    }
+
+    fclose(archivo);
+
+    if (!encontrados)
+    {
+        printf("No hay visualizaciones activas.\n");
     }
 }
 

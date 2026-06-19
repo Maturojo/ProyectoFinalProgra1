@@ -83,10 +83,11 @@ void menuAdministrador(Usuario usuario)
         printf("1. Administrar generos\n");
         printf("2. Administrar contenidos\n");
         printf("3. Administrar usuarios\n");
+        printf("4. Reporte de visualizaciones\n");
         printf("0. Cerrar sesion\n");
         printf("----------------------------------------\n");
 
-        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 3);
+        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 4);
 
         switch (opcion)
         {
@@ -100,6 +101,11 @@ void menuAdministrador(Usuario usuario)
 
             case 3:
                 menuUsuarios();
+                break;
+
+            case 4:
+                listarTodasVisualizaciones();
+                pausar();
                 break;
 
             case 0:
