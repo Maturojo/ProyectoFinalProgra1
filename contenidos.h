@@ -10,6 +10,7 @@
 void menuContenidos(void);
 void altaContenido(void);
 void listarContenidos(void);
+void buscarContenidosPorTitulo(void);
 void modificarContenido(void);
 void bajaContenido(void);
 

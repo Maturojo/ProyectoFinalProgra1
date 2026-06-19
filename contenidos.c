@@ -17,12 +17,13 @@ void menuContenidos(void)
         printf("========================================\n");
         printf("1. Alta de contenido\n");
         printf("2. Listar contenidos\n");
-        printf("3. Modificar contenido\n");
-        printf("4. Baja de contenido\n");
+        printf("3. Buscar contenido por titulo\n");
+        printf("4. Modificar contenido\n");
+        printf("5. Baja de contenido\n");
         printf("0. Volver\n");
         printf("----------------------------------------\n");
 
-        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 4);
+        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 5);
 
         switch (opcion)
         {
@@ -36,10 +37,14 @@ void menuContenidos(void)
                 break;
 
             case 3:
-                modificarContenido();
+                buscarContenidosPorTitulo();
                 break;
 
             case 4:
+                modificarContenido();
+                break;
+
+            case 5:
                 bajaContenido();
                 break;
         }
@@ -140,6 +145,58 @@ void listarContenidos(void)
     {
         printf("No hay contenidos activos.\n");
     }
+}
+
+void buscarContenidosPorTitulo(void)
+{
+    FILE *archivo;
+    Contenido contenido;
+    char texto[TAM_TITULO];
+    int encontrados = 0;
+
+    system("cls");
+    printf("========================================\n");
+    printf("          Buscar contenido\n");
+    printf("========================================\n");
+
+    printf("Ingrese parte del titulo: ");
+    leerCadena(texto, TAM_TITULO);
+
+    if (strlen(texto) == 0)
+    {
+        mostrarMensajeError("\nDebe ingresar un texto para buscar.\n");
+        pausar();
+        return;
+    }
+
+    archivo = fopen(ARCHIVO_CONTENIDOS, "rb");
+
+    if (archivo == NULL)
+    {
+        printf("\nNo hay contenidos cargados.\n");
+        pausar();
+        return;
+    }
+
+    printf("\nResultados:\n");
+
+    while (fread(&contenido, sizeof(Contenido), 1, archivo) == 1)
+    {
+        if (contenido.activo && strstr(contenido.titulo, texto) != NULL)
+        {
+            mostrarContenido(contenido);
+            encontrados = 1;
+        }
+    }
+
+    fclose(archivo);
+
+    if (!encontrados)
+    {
+        printf("No se encontraron contenidos con ese titulo.\n");
+    }
+
+    pausar();
 }
 
 void modificarContenido(void)

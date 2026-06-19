@@ -124,12 +124,13 @@ void menuUsuarioComun(Usuario usuario)
         printf("Usuario: %s\n", usuario.nombre);
         printf("----------------------------------------\n");
         printf("1. Ver catalogo\n");
-        printf("2. Registrar visualizacion\n");
-        printf("3. Mis visualizaciones\n");
+        printf("2. Buscar contenido\n");
+        printf("3. Registrar visualizacion\n");
+        printf("4. Mis visualizaciones\n");
         printf("0. Cerrar sesion\n");
         printf("----------------------------------------\n");
 
-        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 3);
+        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 4);
 
         switch (opcion)
         {
@@ -139,10 +140,14 @@ void menuUsuarioComun(Usuario usuario)
                 break;
 
             case 2:
-                registrarVisualizacion(usuario);
+                buscarContenidosPorTitulo();
                 break;
 
             case 3:
+                registrarVisualizacion(usuario);
+                break;
+
+            case 4:
                 listarVisualizacionesUsuario(usuario.id);
                 pausar();
                 break;
