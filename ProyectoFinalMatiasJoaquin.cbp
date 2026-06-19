@@ -39,6 +39,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="contenidos.h" />
+		<Unit filename="datos_prueba.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="datos_prueba.h" />
 		<Unit filename="estructuras.h" />
 		<Unit filename="generos.c">
 			<Option compilerVar="CC" />

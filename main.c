@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "contenidos.h"
+#include "datos_prueba.h"
 #include "estructuras.h"
 #include "generos.h"
 #include "usuarios.h"
@@ -84,10 +85,11 @@ void menuAdministrador(Usuario usuario)
         printf("2. Administrar contenidos\n");
         printf("3. Administrar usuarios\n");
         printf("4. Reporte de visualizaciones\n");
+        printf("5. Cargar datos de prueba\n");
         printf("0. Cerrar sesion\n");
         printf("----------------------------------------\n");
 
-        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 4);
+        opcion = leerEnteroRango("Ingrese una opcion: ", 0, 5);
 
         switch (opcion)
         {
@@ -106,6 +108,10 @@ void menuAdministrador(Usuario usuario)
             case 4:
                 listarTodasVisualizaciones();
                 pausar();
+                break;
+
+            case 5:
+                cargarDatosPrueba();
                 break;
 
             case 0:
